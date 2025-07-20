@@ -1,10 +1,13 @@
+import tailwindcss from '@tailwindcss/vite'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // https://nuxt.com/modules
-  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/scripts'],
+  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/scripts', 'shadcn-nuxt'],
 
   // https://devtools.nuxt.com
   devtools: { enabled: true },
+  css: ['~/assets/css/tailwind.css'],
 
   // Env variables - https://nuxt.com/docs/getting-started/configuration#environment-variables-and-private-tokens
   runtimeConfig: {
@@ -19,6 +22,11 @@ export default defineNuxtConfig({
 
   // https://hub.nuxt.com/docs/getting-started/installation#options
   hub: {},
+  vite: {
+    plugins: [
+      tailwindcss()
+    ]
+  },
 
   // Development config
   eslint: {
@@ -28,5 +36,16 @@ export default defineNuxtConfig({
         commaDangle: 'never'
       }
     }
+  },
+  shadcn: {
+    /**
+     * Prefix for all the imported component
+     */
+    prefix: '',
+    /**
+     * Directory that the component lives in.
+     * @default "./components/ui"
+     */
+    componentDir: './components/ui'
   }
 })
